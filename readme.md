@@ -1,6 +1,7 @@
 # HDI_Template_20
 
-Description (4D 20 Rx)
+Managing calendars and events is crucial for many applications, especially when integrating with popular services like Google Calendar and Microsoft 365. 
+Starting with 4D 20 R9, you can easily retrieve and access calendars and events from these platforms with the new 4D NetKit commands. Whether you're synchronizing schedules, building calendar-based features, or simply fetching event details, these commands enable seamless integration with Google and Microsoft 365 services.
 
 Find more information on the [blog post](https://blog.4d.com/).
 
