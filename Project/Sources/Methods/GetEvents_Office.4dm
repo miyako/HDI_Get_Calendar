@@ -51,8 +51,8 @@ For each ($myEvent; $events)
 	
 	$myEvent.start.date:=Date:C102($myEvent.start.dateTime)
 	$myEvent.start.time:=Time:C179($myEvent.start.dateTime)
-	$myEvent.end.date:=Date:C102($myEvent.start.dateTime)
-	$myEvent.end.time:=Time:C179($myEvent.start.dateTime)
+	$myEvent.end.date:=Date:C102($myEvent.end.dateTime)
+	$myEvent.end.time:=Time:C179($myEvent.end.dateTime)
 	
 	$myEvent.label:="<span style=\"font-weight:bold\">"+$myEvent.subject+"</span>\n"+\
 		($myEvent.isAllDay ? "Full day" : String:C10(Time:C179($myEvent.start.time); HH MM:K7:2)+"-"+String:C10(Time:C179($myEvent.end.time); HH MM:K7:2))+\
