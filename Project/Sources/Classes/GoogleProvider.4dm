@@ -33,10 +33,10 @@ Function getToken()
 		This:C1470._UpdateFormContext()
 	End if 
 	
-	// Call a method to manage the display
+	// 表示を処理するためのメソッドを呼び出します
 	OntokenreceivedFromGoogle(This:C1470.windowRef; This:C1470.OAuth2)
 	
-	// Save the OAuth2Provider with the updated token in the main process
+	// 更新されたトークンを持つ OAuth2Provider をメインプロセスに保存します
 Function _UpdateFormContext()
 	
 	CALL FORM:C1391(This:C1470.windowRef; Formula:C1597(Form:C1466.OAuth2OfficeProvider:=$1); This:C1470.OAuth2)

@@ -27,10 +27,10 @@ Case of
 		
 		$options:=New object:C1471
 		
-		$options.title:="get calendar events with NetKit?"
+		$options.title:="NetKit を使ってカレンダーイベントを取得するの？"
 		
 		$options.blog:="blog.4d.com"
-		$options.info:="4D NetKit feature"  //ex : "4D View Pro feature"
+		$options.info:="4D NetKit 機能"  //ex : "4D View Pro feature"
 		
 		$options.minimumVersion:="2090"  // 1660 means 16R6   1601 means 16.1 (do not use !)
 		

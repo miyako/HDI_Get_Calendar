@@ -5,41 +5,41 @@ var $calendar : Object:=cs:C1710.NetKit.Office365.new($OAuth2).calendar
 var $myEvent; $myCalendar; $eventsTmp : Object
 var $defaultColor:="lightBlue"
 
-// calculates the date range to be used
+// 使用する日付の範囲を計算します (本日より1週間)
 var $startDate:=String:C10(Current date:C33(); ISO date GMT:K1:10; ?00:00:00?)
 var $endDate:=String:C10((Current date:C33()+7); ISO date GMT:K1:10; ?23:59:59?)
 
-// Collection of all the events to display
+// 表示するイベントのコレクション
 var $events:=[]
 
-// search which calendars is selected
+// 選択されているカレンダーを検索します
 For each ($myCalendar; $calendars)
 	
 	If (Bool:C1537($myCalendar.isSelected))
 		
-		// Gets all the event of the selected calendars
+		// 選択されているカレンダーのイベントをすべて取得します
 		var $timeZone : Object
 		$timeZone:=$calendar.getEvents({top: 1; caldendarId: $myCalendar.id; select: "originalStartTimeZone,id"; startDateTime: $startDate; endDateTime: $endDate})
 		If (($timeZone.success=False:C215) || ($timeZone.events.length=0))
 			continue
 		End if 
 		
-		// select: "start,end,id,isAllDay,subject,recurrence,categories,showAs";
+		// 取得するイベントプロパティを指定することもできます　select: "start,end,id,isAllDay,subject,recurrence,categories,showAs";
 		$eventsTmp:=$calendar.getEvents({calendarId: $myCalendar.id; top: 100; orderBy: "start/dateTime"; startDateTime: $startDate; endDateTime: $endDate; timeZone: $timeZone.events[0].originalStartTimeZone})
 		If ($eventsTmp.success=True:C214)
 			var $last:=False:C215
 			Repeat 
-				// Copy the calendar color background in the event collection
+				// カレンダーの背景色をイベントコレクションにコピーします
 				$eventsTmp.events.map(Formula:C1597($1.value.calendarColor:=$myCalendar.hexColor || $defaultColor))
 				
-				// Add the events received to the events list
+				// 取得したイベントをイベントリストに追加します
 				$events.combine($eventsTmp.events)
 				
-				// Check if all events are retrieved
+				/// すべてのイベントを取得したか確認します
 				If ($eventsTmp.isLastPage)
 					$last:=True:C214
 				Else 
-					// Gets the next event if necessary
+					// 必要に応じて次のイベントを取得します
 					$eventsTmp.next()
 				End if 
 			Until ($last)
@@ -52,7 +52,7 @@ $events:=$events.orderBy("start.dateTime asc")
 var $code; $subject : Text
 $code:="<!--#4dtext $1-->"
 
-// Parses all the events to calculate the date and time attributes
+// すべてのイベントを解析して、日付と時刻の属性を計算します
 
 For each ($myEvent; $events)
 	

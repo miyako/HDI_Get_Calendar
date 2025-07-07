@@ -4,34 +4,34 @@
 var $calendar : Object:=cs:C1710.NetKit.Google.new($OAuth2).calendar
 var $myEvent; $myCalendar; $eventsTmp : Object
 
-// calculates the date range to be used (one week from the current date)
+// 使用する日付の範囲を計算します (本日より1週間)
 var $startDate:=String:C10(Current date:C33(); ISO date GMT:K1:10; ?00:00:00?)
 var $endDate:=String:C10((Current date:C33()+7); ISO date GMT:K1:10; ?23:59:59?)
 
-// Collection of all the events to display
+// 表示するイベントのコレクション
 var $events:=[]
 
-// search which calendars is selected
+// 選択されているカレンダーを検索します
 For each ($myCalendar; $calendars)
 	
 	If (Bool:C1537($myCalendar.isSelected))
 		
-		// Gets all the event of the selected calendars
+		// 選択されているカレンダーのイベントをすべて取得します
 		$eventsTmp:=$calendar.getEvents({calendarId: $myCalendar.id; top: 100; singleEvents: True:C214; startDateTime: $startDate; endDateTime: $endDate; timeZone: $myCalendar.timeZone})
 		If (($eventsTmp.success=True:C214) && ($eventsTmp.events.length>0))
 			var $last:=False:C215
 			Repeat 
-				// Copy the calendar color background in the event collection
+				// カレンダーの背景色をイベントコレクションにコピーします
 				$eventsTmp.events.map(Formula:C1597($1.value.calendarColor:=$myCalendar.backgroundColor || Background color none:K23:10))
 				
-				// Add the events received to the events list
+				// 取得したイベントをイベントリストに追加します
 				$events.combine($eventsTmp.events)
 				
-				// Check if all events are retrieved
+				// すべてのイベントを取得したか確認します
 				If ($eventsTmp.isLastPage)
 					$last:=True:C214
 				Else 
-					// Gets the next event if necessary
+					// 必要に応じて次のイベントを取得します
 					$eventsTmp.next()
 				End if 
 			Until ($last)
@@ -42,7 +42,7 @@ End for each
 var $code; $summary : Text
 $code:="<!--#4dtext $1-->"
 
-// Parses all the events to calculate the date and time attributes
+// すべてのイベントを解析して、日付と時刻の属性を計算します
 For each ($myEvent; $events)
 	If ($myEvent.status#"cancelled")
 		If (String:C10($myEvent.start.date)="")

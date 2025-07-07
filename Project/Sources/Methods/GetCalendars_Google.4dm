@@ -4,12 +4,12 @@
 var $calendar : Object:=cs:C1710.NetKit.Google.new($OAuth2).calendar
 var $item : Object
 
-// Gets all the calendars 
+// すべてのカレンダーを取得します
 var $calendars : Collection
 $calendars:=$calendar.getCalendars().calendars
 
-// Add selected information on each calendar
-// By default the default calendar is selected
+// 選択の有無を管理する情報を各カレンダーに追加します
+// デフォルトではデフォルトカレンダーのみが選択されています
 For each ($item; $calendars)
 	$item.isSelected:=Bool:C1537($item.primary)
 End for each 
