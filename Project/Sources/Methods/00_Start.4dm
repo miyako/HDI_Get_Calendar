@@ -12,7 +12,7 @@ Case of
 			ALERT:C41("Sorry, this \"How do I\" (HDI) example must be used with a newer version of 4D (v16 R6 and above)"; "Quit")
 			QUIT 4D:C291
 		Else 
-			$ps:=New process:C317(Current method name:C684; 0; Current method name:C684; 0)
+			$ps:=New process:C317(Current method name:C684; 0; Current method name:C684; 0; *)
 		End if 
 		
 	Else 
