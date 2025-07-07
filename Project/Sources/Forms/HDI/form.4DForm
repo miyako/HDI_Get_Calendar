@@ -62,7 +62,7 @@
 					"height": 20,
 					"action": "Accept",
 					"shortcutKey": "[Return]",
-					"text": "Demo",
+					"text": "デモ",
 					"class": "default1",
 					"focusable": false,
 					"defaultButton": true,
