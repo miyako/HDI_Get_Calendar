@@ -1,4 +1,4 @@
-﻿{
+{
 	"bars": [
 		{
 			"id": 1,
@@ -22,7 +22,7 @@
 			"title": ":xliff:CommonMenuFile",
 			"items": [
 				{
-					"title": "Demo",
+					"title": "デモ",
 					"method": "00_Start",
 					"shortcutAccel": true,
 					"shortcutKey": "k"
@@ -146,7 +146,6 @@
 				},
 				{
 					"title": ":xliff:CommonMenuItemCut",
-					"icon": "pictlib:2052",
 					"shortcutAccel": true,
 					"shortcutKey": "X",
 					"action": "cut"

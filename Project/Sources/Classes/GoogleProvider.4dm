@@ -1,3 +1,6 @@
+property windowRef : Integer
+property OAuth2 : cs:C1710.NetKit.OAuth2Provider
+
 Class constructor($windowRef : Integer)
 	
 	This:C1470.windowRef:=$windowRef
@@ -11,6 +14,7 @@ Class constructor($windowRef : Integer)
 	$credential.clientSecret:=$myCredentials.ClientSecret
 	$credential.redirectURI:="http://127.0.0.1:50993/authorize/"
 	$credential.authenticationPage:=Folder:C1567(fk web root folder:K87:15).file("authenticate/authentication.htm")
+	$credential.authenticationErrorPage:=Folder:C1567(fk web root folder:K87:15).file("authenticate/error.htm")
 	$credential.scope:="https://www.googleapis.com/auth/calendar"
 	
 	$credential.prompt:="select_account"

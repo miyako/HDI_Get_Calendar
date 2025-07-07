@@ -1,7 +1,5 @@
-//%attributes = {"preemptive":"capable"}
+//%attributes = {"invisible":true,"preemptive":"incapable"}
 #DECLARE($windowRef : Integer; $OAuth2 : Object)
-
-var $name:="OfficeWorker"
 
 // Gets all the calendars from the server
 var $calendars:=GetCalendars_Office($windowRef; $OAuth2)

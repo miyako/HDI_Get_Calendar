@@ -1,4 +1,4 @@
-//%attributes = {"preemptive":"capable"}
+//%attributes = {"invisible":true,"preemptive":"incapable"}
 #DECLARE($windowRef : Integer; $OAuth2 : Object; $calendars : Collection)
 
 var $calendar : Object:=cs:C1710.NetKit.Office365.new($OAuth2).calendar
@@ -18,7 +18,8 @@ For each ($myCalendar; $calendars)
 	If (Bool:C1537($myCalendar.isSelected))
 		
 		// Gets all the event of the selected calendars
-		var $timeZone:=$calendar.getEvents({top: 1; caldendarId: $myCalendar.id; select: "originalStartTimeZone,id"; startDateTime: $startDate; endDateTime: $endDate})
+		var $timeZone : Object
+		$timeZone:=$calendar.getEvents({top: 1; caldendarId: $myCalendar.id; select: "originalStartTimeZone,id"; startDateTime: $startDate; endDateTime: $endDate})
 		If (($timeZone.success=False:C215) || ($timeZone.events.length=0))
 			continue
 		End if 
@@ -38,6 +39,7 @@ For each ($myCalendar; $calendars)
 				If ($eventsTmp.isLastPage)
 					$last:=True:C214
 				Else 
+					// Gets the next event if necessary
 					$eventsTmp.next()
 				End if 
 			Until ($last)
@@ -47,6 +49,11 @@ End for each
 
 $events:=$events.orderBy("start.dateTime asc")
 
+var $code; $subject : Text
+$code:="<!--#4dtext $1-->"
+
+// Parses all the events to calculate the date and time attributes
+
 For each ($myEvent; $events)
 	
 	$myEvent.start.date:=Date:C102($myEvent.start.dateTime)
@@ -54,7 +61,9 @@ For each ($myEvent; $events)
 	$myEvent.end.date:=Date:C102($myEvent.end.dateTime)
 	$myEvent.end.time:=Time:C179($myEvent.end.dateTime)
 	
-	$myEvent.label:="<span style=\"font-weight:bold\">"+$myEvent.subject+"</span>\n"+\
+	PROCESS 4D TAGS:C816($code; $subject; $myEvent.subject)
+	
+	$myEvent.label:="<span style=\"font-weight:bold\">"+$subject+"</span>\n"+\
 		($myEvent.isAllDay ? "Full day" : String:C10(Time:C179($myEvent.start.time); HH MM:K7:2)+"-"+String:C10(Time:C179($myEvent.end.time); HH MM:K7:2))+\
 		"\n"+String:C10($myEvent.showAs)
 	

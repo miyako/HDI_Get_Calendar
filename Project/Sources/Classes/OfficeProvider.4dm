@@ -14,7 +14,7 @@ Class constructor($windowRef : Integer)
 	$credential.redirectURI:="http://127.0.0.1:50993/authorize/"
 	$credential.scope:="https://graph.microsoft.com/.default"
 	$credential.authenticationPage:=Folder:C1567(fk web root folder:K87:15).file("authenticate/authentication.htm")
-	
+	$credential.authenticationErrorPage:=Folder:C1567(fk web root folder:K87:15).file("authenticate/error.htm")
 	$credential.prompt:="select_account"
 	
 	$credential.timeout:=120

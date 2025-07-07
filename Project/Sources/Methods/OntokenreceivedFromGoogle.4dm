@@ -1,4 +1,4 @@
-//%attributes = {"preemptive":"capable"}
+//%attributes = {"invisible":true,"preemptive":"incapable"}
 #DECLARE($windowRef : Integer; $OAuth2 : Object)
 
 // Gets all the calendars from the server

@@ -1,0 +1,16 @@
+@media (prefers-color-scheme: light) {
+	.signInWithGoogle {
+		icon: url("/RESOURCES/Images/Google/sq_SI.png");
+	}
+	.signInWithMicrosoft {
+		icon: url("/RESOURCES/Images/Microsoft/signin.svg");
+	}
+}	
+@media (prefers-color-scheme: dark) {
+	.signInWithGoogle {
+		icon: url("/RESOURCES/Images/Google/sq_SI_dark.png");
+	}
+	.signInWithMicrosoft {
+		icon: url("/RESOURCES/Images/Microsoft/signin_dark.svg");
+	}
+}	

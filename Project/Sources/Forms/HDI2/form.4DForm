@@ -4,6 +4,9 @@
 	"windowMaxWidth": 32000,
 	"windowMinHeight": 540,
 	"windowMaxHeight": 32000,
+	"css": [
+		"/SOURCES/HDI.css"
+	],
 	"width": 960,
 	"height": 640,
 	"menuBar": "Menu Bar #1",
@@ -13,7 +16,8 @@
 	"markerFooter": 240,
 	"events": [
 		"onLoad",
-		"onCloseBox"
+		"onCloseBox",
+		"onUnload"
 	],
 	"method": "method.4dm",
 	"pageFormat": {
@@ -103,7 +107,7 @@
 					"type": "input",
 					"top": 51,
 					"left": 40,
-					"width": 766,
+					"width": 586,
 					"height": 40,
 					"sizingY": "grow",
 					"dataSource": "Infos[1].Description",
@@ -145,7 +149,7 @@
 					"showHeaders": false,
 					"textAlign": "left",
 					"verticalAlign": "top",
-					"focusable": false,
+					"focusable": true,
 					"columns": [
 						{
 							"header": {
@@ -202,33 +206,6 @@
 							"contextMenu": "none"
 						}
 					]
-				},
-				"ConnectBt": {
-					"type": "button",
-					"text": "Sign in   ",
-					"top": 49,
-					"left": 821,
-					"width": 106,
-					"height": 44,
-					"events": [
-						"onClick"
-					],
-					"method": "ObjectMethods/ConnectBt.4dm",
-					"style": "custom",
-					"fontWeight": "bold",
-					"fontSize": 14,
-					"stroke": "#5E5E5E",
-					"borderStyle": "solid",
-					"textAlign": "right",
-					"imageHugsTitle": false
-				},
-				"Static Picture1": {
-					"type": "picture",
-					"top": 58,
-					"left": 826,
-					"width": 28,
-					"height": 26,
-					"picture": "/RESOURCES/Microsoft.png"
 				},
 				"SpinnerMicrosoft": {
 					"type": "spinner",
@@ -291,7 +268,8 @@
 							"resizable": false,
 							"verticalAlign": "top",
 							"textAlign": "left",
-							"rowFillSource": "DisplayCalendarColor"
+							"rowFillSource": "DisplayCalendarColor",
+							"truncateMode": "none"
 						}
 					]
 				},
@@ -314,27 +292,48 @@
 					"height": 15,
 					"fontWeight": "bold",
 					"fontSize": 14
+				},
+				"signInWithMicrosoft": {
+					"type": "button",
+					"top": 50,
+					"left": 703,
+					"width": 224,
+					"height": 43,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/signInWithMicrosoft.4dm",
+					"style": "custom",
+					"customBackgroundPicture": "",
+					"imageHugsTitle": false,
+					"textPlacement": "left",
+					"borderStyle": "none",
+					"focusable": false,
+					"class": "signInWithMicrosoft",
+					"text": ""
 				}
 			}
 		},
 		{
 			"objects": {
-				"Button1": {
+				"signInWithGoogle": {
 					"type": "button",
-					"text": "",
-					"top": 49,
-					"left": 743,
-					"width": 184,
-					"height": 44,
+					"top": 50,
+					"left": 703,
+					"width": 224,
+					"height": 43,
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button1.4dm",
-					"style": "regular",
-					"icon": "/RESOURCES/btn_google_signin_light_normal_web.png",
-					"customBackgroundPicture": "/RESOURCES/btn_google_signin_light_focus_web.png",
+					"method": "ObjectMethods/signInWithGoogle.4dm",
+					"style": "custom",
+					"customBackgroundPicture": "",
 					"imageHugsTitle": false,
-					"textPlacement": "center"
+					"textPlacement": "left",
+					"borderStyle": "none",
+					"focusable": false,
+					"class": "signInWithGoogle",
+					"text": ""
 				},
 				"ListEventGoogle": {
 					"type": "listbox",
@@ -477,7 +476,7 @@
 							"resizable": false,
 							"verticalAlign": "top",
 							"textAlign": "left",
-							"rowStrokeSource": "This:C1470.foregroundColor",
+							"rowStrokeSource": "",
 							"rowFillSource": "DisplayCalendarColor"
 						}
 					]
@@ -486,7 +485,7 @@
 					"type": "input",
 					"top": 51,
 					"left": 40,
-					"width": 766,
+					"width": 686,
 					"height": 40,
 					"sizingY": "grow",
 					"dataSource": "Infos[2].Description",
@@ -537,7 +536,7 @@
 			"View 1": {}
 		}
 	},
-	"geometryStamp": 248,
+	"geometryStamp": 324,
 	"windowSizingX": "fixed",
 	"windowSizingY": "fixed"
 }

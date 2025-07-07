@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"invisible":true}
 #DECLARE : Variant
 
 If (String:C10(This:C1470.displayDate)#"")

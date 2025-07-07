@@ -1,4 +1,4 @@
-//%attributes = {"preemptive":"capable"}
+//%attributes = {"invisible":true,"preemptive":"incapable"}
 #DECLARE($windowRef : Integer; $OAuth2 : Object; $calendars : Collection)
 
 var $calendar : Object:=cs:C1710.NetKit.Google.new($OAuth2).calendar
@@ -39,6 +39,9 @@ For each ($myCalendar; $calendars)
 	End if 
 End for each 
 
+var $code; $summary : Text
+$code:="<!--#4dtext $1-->"
+
 // Parses all the events to calculate the date and time attributes
 For each ($myEvent; $events)
 	If ($myEvent.status#"cancelled")
@@ -61,7 +64,9 @@ For each ($myEvent; $events)
 			
 		End if 
 		
-		$myEvent.label:="<span style=\"font-weight:bold\">"+$myEvent.summary+"</span>\n"
+		PROCESS 4D TAGS:C816($code; $summary; $myEvent.summary)
+		
+		$myEvent.label:="<span style=\"font-weight:bold\">"+$summary+"</span>\n"
 		$myEvent.label+=($myEvent.isAllDay ? ($myEvent.isPeriod ? String:C10($myEvent.end.date) : "Full day") : String:C10(Time:C179($myEvent.start.time); HH MM:K7:2)+"-"+String:C10(Time:C179($myEvent.end.time); HH MM:K7:2))
 		$myEvent.label+="\n"+(($myEvent.transparency=Null:C1517) || ($myEvent.transparency="opaque") ? "Busy" : "Free")
 	End if 

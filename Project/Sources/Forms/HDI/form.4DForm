@@ -179,10 +179,10 @@
 				},
 				"txtTitle": {
 					"type": "text",
-					"top": 58,
+					"top": 68,
 					"left": 160,
 					"width": 544,
-					"height": 50,
+					"height": 22,
 					"stroke": "automatic",
 					"textAlign": "left",
 					"fontSize": 18,
@@ -245,5 +245,6 @@
 		"views": {
 			"View 1": {}
 		}
-	}
+	},
+	"geometryStamp": 1
 }
