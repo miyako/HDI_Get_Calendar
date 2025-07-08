@@ -56,6 +56,14 @@ $code:="<!--#4dtext $1-->"
 
 For each ($myEvent; $events)
 	
+	If ($myEvent.start.timeZone="UTC") && ($myEvent.start.dateTime#"@Z")
+		$myEvent.start.dateTime+="Z"
+	End if 
+	
+	If ($myEvent.end.timeZone="UTC") && ($myEvent.end.dateTime#"@Z")
+		$myEvent.end.dateTime+="Z"
+	End if 
+	
 	$myEvent.start.date:=Date:C102($myEvent.start.dateTime)
 	$myEvent.start.time:=Time:C179($myEvent.start.dateTime)
 	$myEvent.end.date:=Date:C102($myEvent.end.dateTime)
